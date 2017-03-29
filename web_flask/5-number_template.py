@@ -30,7 +30,7 @@ def number(n):
 
 
 @app.route('/number_template/<int:n>')
-def number(n):
+def numbertwo(n):
     return render_template('5-number.html', n=n)
 
 if __name__ == '__main__':
