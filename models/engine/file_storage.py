@@ -1,7 +1,13 @@
 #!/usr/bin/python3
 import json
 from datetime import datetime
-from models import *
+from models.base_model import BaseModel
+from models.user import User
+from models.amenity import Amenity
+from models.city import City
+from models.place import Place
+from models.review import Review
+from models.state import State
 
 
 class FileStorage:
@@ -11,8 +17,15 @@ class FileStorage:
     def __init__(self):
         self.reload()
 
-    def all(self):
-        return FileStorage.__objects
+    def all(self, cls=None):
+        if cls is None:
+            return FileStorage.__objects
+        else:
+            myDictionary = {}
+            for k, v in self.__objects.items():
+                if v.__class__.__name__ == cls:
+                    myDictionary[k] = v
+            return myDictionary
 
     def new(self, obj):
         if obj is not None:
@@ -41,3 +54,6 @@ class FileStorage:
                     FileStorage.__objects[k] = eval(cls)(temp[k])
         except Exception as e:
             pass
+
+    def close(self):
+        self.reload()
