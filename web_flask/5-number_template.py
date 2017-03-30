@@ -26,7 +26,12 @@ def myPython(text="is cool"):
 
 @app.route('/number/<int:n>')
 def number(n):
-    return '{} is a number'.format(n)
+    return '{:d} is a number'.format(n)
+
+
+@app.route('/number_template/<int:n>')
+def numbertwo(n):
+    return render_template('5-number.html', n=n)
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
