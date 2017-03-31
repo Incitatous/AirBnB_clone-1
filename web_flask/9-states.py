@@ -15,7 +15,7 @@ def statesList():
     return render_template('9-states.html', n=n)
 
 @app.route('/states/<id>')
-def statesId():
+def statesId(id):
     o = storage.all("State")
     identity = ""
     for i in o:
