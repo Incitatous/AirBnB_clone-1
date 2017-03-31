@@ -18,9 +18,9 @@ def statesList():
 def statesId():
     o = storage.all("State")
     identity = ""
-    for i in State:
+    for i in o:
         if id == i:
-            identity = State[i]
+            identity = o[i]
     return render_template('9-states.html', identity=identity)
         
 
